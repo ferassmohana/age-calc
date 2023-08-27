@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.attribution {
+    font-size: 11px;
+    text-align: center;
+}
+
+.attribution a {
+    color: hsl(228, 45%, 44%);
+}
+
+body {
+    background-color: #f0f0f0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 10px 10px 30px 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    width: 80vw;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    align-items: center;
+}
+
+.input-container {
+    position: relative;
+}
+
+.input-container label {
+    color: hsl(0, 1%, 44%);
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-block-end: 0.5rem;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.input-container label.error {
+    outline-color: (0, 100%, 67%);
+}
+
+input {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    width: 100%;
+    border: 0;
+    border-radius: 6px;
+    outline: 1px solid hsl(0, 0%, 86%);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input:focus-visible {
+    outline-color: hsl(259, 100%, 65%);
+}
+
+input.error {
+    outline-color: hsl(0, 100%, 67%);
+}
+
+::placeholder {
+    color: hsl(0, 1%, 44%);
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.form-division {
+    display: grid;
+    grid-template-columns: 1fr 60px;
+    align-items: center;
+}
+
+.span3 {
+    grid-column: span 3;
+}
+
+button {
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 0;
+    outline: 0;
+    background-color: hsl(259, 100%, 65%);
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+button:hover {
+    background-color: hsl(0, 0%, 8%);
+}
+
+.output-container {
+    font-size: 64px;
+    font-weight: 800;
+    font-style: italic;
+}
+
+.output-value {
+    color: hsl(259, 100%, 65%);
+}
+
+.error-message {
+    font-size: 14px;
+    color: hsl(0, 100%, 67%);
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    font-style: italic;
+    display: none;
+}
+
+.error-message.active {
+    display: inline-block;
+}
+
+@media (max-width: 821px){
+    .error-message{
+        bottom: unset;
+        top: 110px;
+    }
+    .form-division{
+        margin-top: 3rem;
+    }
+    .output-container{
+        font-size: 48px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container{
+        padding: 1rem;
+    }
+    .grid-4 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    input {
+        font-size: 24px;
+        padding: 0.5rem;
+    }
+
+    ::placeholder {
+        font-size: 24px;
+    }
+
+    .form-division {
+        margin-block: 5rem 3rem;
+        position: relative;
+        grid-template-columns: 1fr;
+    }
+
+    .error-message.active {
+        font-size: 13px;
+        top: 78px;
+    }
+
+    button {
+        position: absolute;
+        padding: 0.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .output-container {
+        font-size: 40px;
+    }
+}
