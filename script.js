@@ -143,8 +143,8 @@ form.addEventListener("submit", (e) => {
 
 
     if (checkCount === 6) {
-        let years = year_input.value;
-        let months = Number(month_input.value);
+        let years = Number(year_input.value);
+        let months = Number(month_input.value) - 1; // Months are 0-indexed in JavaScript Date
         let days = Number(day_input.value);
         if (years.length == 1) {
             years = "000" + years;
