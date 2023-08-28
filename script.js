@@ -156,7 +156,7 @@ form.addEventListener("submit", (e) => {
             years = "0" + years;
             Number(years)
         }
-        const birthdate = `${years}-${months}-${days}`; 
+        const birthdate = new Date(years, months, days); 
         const age = calculateAge(birthdate);
 
         const days_value_attribute = document.createAttribute("data-target");
