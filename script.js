@@ -37,6 +37,10 @@ function calculateAge(birthdate) {
         days = Math.floor((today - lastMonthDate) / (1000 * 60 * 60 * 24));
     }
 
+    if (today.getMonth() > birth.getMonth() && (days < 30)) {
+        months--;
+    }
+
     return { years, months, days };
 }
 
@@ -103,7 +107,8 @@ form.addEventListener("submit", (e) => {
             year_message.classList.add('active');
             year_message.textContent = "Must be in the past!";
             checkCount--;
-        } else {
+        }
+        else {
             year_label.classList.remove('error');
             year_input.classList.remove('error');
             year_message.classList.remove('active');
@@ -141,10 +146,39 @@ form.addEventListener("submit", (e) => {
         }
     }
 
+    // Check Validation of the input in the same year!
+    if (year_input.value == new Date().getFullYear()) {
+        if (month_input.value > new Date().getMonth() + 1) {
+            month_label.classList.add('error');
+            month_input.classList.add('error');
+            month_message.classList.add('active');
+            month_message.textContent = "Must be in the past!";
+            checkCount--;
+        } else {
+            month_label.classList.remove('error');
+            month_input.classList.remove('error');
+            month_message.classList.remove('active');
+            checkCount++;
+        }
+        if ((month_input.value == new Date().getMonth() + 1) && (day_input.value > new Date().getDate())) {
+            day_label.classList.add('error');
+            day_input.classList.add('error');
+            day_message.classList.add('active');
+            day_message.textContent = "Must be in the past!";
+            checkCount--;
+        } else {
+            day_label.classList.remove('error');
+            day_input.classList.remove('error');
+            day_message.classList.remove('active');
+            checkCount++;
+        }
+    } else {
+        checkCount += 2;
+    }
 
-    if (checkCount === 6) {
-        let years = Number(year_input.value);
-        let months = Number(month_input.value) - 1; // Months are 0-indexed in JavaScript Date
+    if (checkCount === 8) {
+        let years = year_input.value;
+        let months = Number(month_input.value);
         let days = Number(day_input.value);
         if (years.length == 1) {
             years = "000" + years;
@@ -156,7 +190,7 @@ form.addEventListener("submit", (e) => {
             years = "0" + years;
             Number(years)
         }
-        const birthdate = new Date(years, months, days); 
+        const birthdate = `${years}-${months}-${days}`;
         const age = calculateAge(birthdate);
 
         const days_value_attribute = document.createAttribute("data-target");
